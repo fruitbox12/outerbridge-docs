@@ -1,8 +1,8 @@
 {
-  "index": "Introduction",
+  "index": "Intro",
+    "integrations": "Integrations",
   "get-started": "Get Started",
   "how-to-use": "How To Use",
   "create": "Create",
-  "reference": "Reference",
   "integrations": "Integrations"
 }
