@@ -4,11 +4,11 @@ In this tutorial, we are going to create an action node that will retrieve the E
 Etherscan is a Block Explorer and Analytics Platform for Ethereum, a decentralized smart contracts platform.
 
 ## Prerequisite
-- Have Outerbridge setup and working. See [setup guide](/get-started).
+- Have simplifi setup and working. See [setup guide](/get-started).
 - Etherscan account and API key. See [Getting An API Key](https://docs.etherscan.io/getting-started/viewing-api-usage-statistics).
 
 ## Step 1
-Go to `Outerbridge/packages/components/nodes`, create a folder `Etherscan`. Inside the folder create a file `Etherscan.ts`.
+Go to `simplifi/packages/components/nodes`, create a folder `Etherscan`. Inside the folder create a file `Etherscan.ts`.
 
 ## Step 2
 Add an icon into the folder. It can be either `jpg`, `png`, or `svg` format.
@@ -151,7 +151,7 @@ Inside the `credentialMethod` field, user is able to select `etherscanApi`. We w
 Lastly, specify remaining parameters needed for the **Get Ether Balance for a Single Address** API call. In this case, `address` is one of the required query parameters as specified [here](https://docs.etherscan.io/api-endpoints/accounts#get-ether-balance-for-a-single-address).
 
 ## Step 6
-Go to `Outerbridge/packages/components/credentials`, create a folder `Etherscan`. Inside the folder create a file `EtherscanApi.ts`.
+Go to `simplifi/packages/components/credentials`, create a folder `Etherscan`. Inside the folder create a file `EtherscanApi.ts`.
 You can skip this if there is an existing one already.
 Copy and paste the following:
 
@@ -185,7 +185,7 @@ module.exports = { credClass: EtherscanApi }
 ```
 
 ## Step 7
-Back to `Outerbridge/packages/components/nodes/Etherscan/Etherscan.ts`, create `run()` function after the constructor. This function is needed for every action node.
+Back to `simplifi/packages/components/nodes/Etherscan/Etherscan.ts`, create `run()` function after the constructor. This function is needed for every action node.
 
 ```jsx
 //...imports
@@ -281,13 +281,13 @@ A `try catch` block is used to capture any error. If there is any error, we use 
 
 
 ## Step 9
-At root path `Outerbridge`, run `yarn run build` to build the node into `dist` folder which will be eventually picked up by `server`. 
+At root path `simplifi`, run `yarn run build` to build the node into `dist` folder which will be eventually picked up by `server`. 
 After build has successfully finished, run `yarn run dev` for development, or `yarn run start` for production.
 
 🎉 You have successfully created an action node!
 
 <br />
-<img src="/create-action-node.gif" alt="Outerbridge Etherscan Action Node" height="auto" width='100%'></img>
+<img src="/create-action-node.gif" alt="simplifi Etherscan Action Node" height="auto" width='100%'></img>
 
 **Complete Code**
 ```jsx
