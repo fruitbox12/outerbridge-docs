@@ -1,24 +1,17 @@
 import Callout from 'nextra-theme-docs/callout'
 
-# Get Started
+# simplifi SDK
 
 ## ⚡Quick Start
 
-1. Install MongoDB [locally](https://www.mongodb.com/docs/manual/administration/install-community/) OR follow the guide of using MongoDB Atlas [here](#mongodb-atlas)
-2. Install Outerbridge
+2. Install simplifi SDK
    ```bash
-   npm install -g outerbridge
+   npm install -g simplifi-sdk
    ```
-3. Start Outerbridge
+3. Start simplifi SDK
 
    ```bash
-   npx outerbridge start
-   ```
-
-   If using MongoDB Atlas
-
-   ```bash
-   npx outerbridge start --mongourl=mongodb+srv://<user>:<password>@<your-cluster>.mongodb.net/outerbridge?retryWrites=true&w=majority
+   npx simplifi start
    ```
 
 4. Open `http://localhost:3000`
@@ -28,20 +21,20 @@ import Callout from 'nextra-theme-docs/callout'
 1. Clone the repository
 
    ```bash
-   git clone https://github.com/Outerbridgeio/Outerbridge.git
+   git clone https://github.com/simplifi/simplifi.git
    ```
 
 2. Go into `docker` folder
 
    ```bash
-   cd Outerbridge && cd docker
+   cd Simplifi && cd simplifi
    ```
 
 3. Start Docker Compose
    ```bash
    docker-compose up -d
    ```
-4. This will automatically spins up mongodb and outerbridge containers
+4. This will automatically spins up mongodb and simplifi containers
 5. Open `http://localhost:3000`
 6. You can bring the containers down by
    ```bash
@@ -49,13 +42,13 @@ import Callout from 'nextra-theme-docs/callout'
    ```
 7. If using MongoDB Atlas
 
-   i.) Create a new variable in [.env](https://github.com/Outerbridgeio/Outerbridge/blob/master/docker/.env)
+   i.) Create a new variable in [.env](https://github.com/simplifi/simplifi/blob/master/docker/.env)
 
    ```jsx
-   MONGO_URL=mongodb+srv://<user>:<password>@<your-cluster>.mongodb.net/outerbridge?retryWrites=true&w=majority
+   MONGO_URL=mongodb+srv://<user>:<password>@<your-cluster>.mongodb.net/simplifi?retryWrites=true&w=majority
    ```
 
-   ii.) Add the variable `MONGO_URL` under `outerbridge` section of [docker-compose.yml](https://github.com/Outerbridgeio/Outerbridge/blob/master/docker/docker-compose.yml)
+   ii.) Add the variable `MONGO_URL` under `simplifi` section of [docker-compose.yml](https://github.com/simplifi/simplifi/blob/master/docker/docker-compose.yml)
 
    ```jsx
    version: '3.1'
@@ -68,10 +61,10 @@ import Callout from 'nextra-theme-docs/callout'
          - "27017:27017"
       restart: always
       environment:
-         - MONGO_INITDB_DATABASE=outerbridge
+         - MONGO_INITDB_DATABASE=simplifi
 
-   outerbridge:
-      image: outerbridgeio/outerbridge
+   simplifi:
+      image: simplifi/simplifi
       restart: always
       environment:
          - MONGO_HOST=${MONGO_HOST}
@@ -84,8 +77,8 @@ import Callout from 'nextra-theme-docs/callout'
       links:
          - mongo
       volumes:
-         - ~/.outerbridge:/root/.outerbridge
-      command: /bin/sh -c "sleep 3; outerbridge start"
+         - ~/.simplifi:/root/.simplifi
+      command: /bin/sh -c "sleep 3; simplifi start"
    ```
 
    iii.) Start Docker Compose
@@ -96,7 +89,7 @@ import Callout from 'nextra-theme-docs/callout'
 
 ## 👨‍💻 Developers
 
-Outerbridge has 3 different modules in a single mono repository.
+simplifi has 3 different modules in a single mono repository.
 
 - `server`: Node backend to serve API logics
 - `ui`: React frontend
@@ -115,13 +108,13 @@ Outerbridge has 3 different modules in a single mono repository.
 1. Clone the repository
 
    ```bash
-   git clone https://github.com/Outerbridgeio/Outerbridge.git
+   git clone https://github.com/simplifi/simplifi.git
    ```
 
 2. Go into repository folder
 
    ```bash
-   cd Outerbridge
+   cd simplifi
    ```
 
 3. Install `lerna`, `husky` and `rimraf` :
@@ -204,7 +197,7 @@ Below is the guide on how to use MongoDB Atlas.
    For example:
 
    ```jsx
-   mongodb+srv://user1:<password>@cluster0.t5kythn.mongodb.net/outerbridge?retryWrites=true&w=majority
+   mongodb+srv://user1:<password>@cluster0.t5kythn.mongodb.net/simplifi?retryWrites=true&w=majority
 
    ```
 
@@ -214,16 +207,16 @@ Below is the guide on how to use MongoDB Atlas.
   Beware of using Tunnel URL in production
 </Callout>
 
-By default, starting Outerbridge will also spins up a tunnel url. You can access the exact same app on this url. A console log will be shown like this:
+By default, starting simplifi will also spins up a tunnel url. You can access the exact same app on this url. A console log will be shown like this:
 
 ```jsx
 process.env.TUNNEL_BASE_URL = http://<domain>-<name>-<number>.loca.lt/
 ```
 
-This is needed for third-party webhook integration such as Alchemy Webhook in order to reach Outerbridge on web. However it should not be used in production because anyone can access the app.
+This is needed for third-party webhook integration such as Alchemy Webhook in order to reach simplifi on web. However it should not be used in production because anyone can access the app.
 To toggle this off:
 
-1. Go to `Outerbridge/packages/server`
+1. Go to `simplifi/packages/server`
 2. Create one `.env` file or modify the existing one by setting:
 
 ```jsx
