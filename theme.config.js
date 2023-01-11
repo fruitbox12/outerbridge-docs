@@ -1,6 +1,5 @@
 export default {
-  github: 'https://github.com/Outerbridgeio/Outerbridge',
-  docsRepositoryBase: 'https://github.com/Outerbridgeio/outerbridge-docs/blob/master',
+
   titleSuffix: ' – Simplifi',
   logo: (
     <>
@@ -58,6 +57,5 @@ export default {
   prevLinks: true,
   nextLinks: true,
   footer: true,
-  footerEditLink: 'Edit this page on GitHub',
-  footerText: <></>,
+
 }
