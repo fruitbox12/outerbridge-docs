@@ -14,7 +14,7 @@ For instance, if ETH balance in my wallet exceeds 5ETH, send me an email notific
 
 ## Workflow format
 
-Outerbridge workflow uses [JSON](https://en.wikipedia.org/wiki/JSON) format. Workflow can be easily exported and loaded.
+simplifi workflow uses [JSON](https://en.wikipedia.org/wiki/JSON) format. Workflow can be easily exported and loaded.
 
 Example of workflow:
 
@@ -193,8 +193,8 @@ Once a workflow is deployed, it will stay active and listen to event specified b
 Deployed workflow will automatically kick off an execution through the connected nodes when an event/webhook is received. 
 
 ## Under the hood
-Outerbridge uses [child_process](https://nodejs.org/api/child_process.html) module to spawns multiple subprocesses whenever a workflow is to be executed. 
+simplifi uses [child_process](https://nodejs.org/api/child_process.html) module to spawns multiple subprocesses whenever a workflow is to be executed. 
 [Node AbortController](https://www.npmjs.com/package/node-abort-controller) is used to abort subprocesses. 
-Breadth First Search algorithm is used to find and execute next connected nodes. To avoid infinite loop, maximum of 3 loops is specified. This means Outerbridge will only executes the same loop for 3 times before terminating the execution.
+Breadth First Search algorithm is used to find and execute next connected nodes. To avoid infinite loop, maximum of 3 loops is specified. This means simplifi will only executes the same loop for 3 times before terminating the execution.
 
-[View Source Code](https://github.com/Outerbridgeio/Outerbridge/blob/master/packages/server/src/ChildProcess.ts#L36)
+[View Source Code](https://github.com/simplifiio/simplifi/blob/master/packages/server/src/ChildProcess.ts#L36)

@@ -3,10 +3,10 @@
 In this tutorial, we are going to create a trigger node that will automatically gets triggered when a new block is mined on Ethereum Mainnet.
 
 ## Prerequisite
-- Have Outerbridge setup and working. See [setup guide](/get-started).
+- Have simplifi setup and working. See [setup guide](/get-started).
 
 ## Step 1
-Go to `Outerbridge/packages/components/nodes`, create a folder `MinedBlockTrigger`. Inside the folder create a file `MinedBlockTrigger.ts`.
+Go to `simplifi/packages/components/nodes`, create a folder `MinedBlockTrigger`. Inside the folder create a file `MinedBlockTrigger.ts`.
 
 ## Step 2
 Add an icon into the folder. It can be either `jpg`, `png`, or `svg` format.
@@ -195,13 +195,13 @@ module.exports = { nodeClass: MinedBlockTrigger }
 ```
 
 ## Step 10
-At root path `Outerbridge`, run `yarn run build` to build the node into `dist` folder which will be eventually picked up by `server`. 
+At root path `simplifi`, run `yarn run build` to build the node into `dist` folder which will be eventually picked up by `server`. 
 After build has successfully finished, run `yarn run dev` for development, or `yarn run start` for production.
 
 🎉 You have successfully created a trigger node!
 
 <br />
-<img src="/create-trigger-node.gif" alt="Outerbridge Mined Block Trigger" height="auto" width='100%'></img>
+<img src="/create-trigger-node.gif" alt="simplifi Mined Block Trigger" height="auto" width='100%'></img>
 
 **Complete Code**
 ```jsx

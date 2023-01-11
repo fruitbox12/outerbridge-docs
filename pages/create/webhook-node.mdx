@@ -4,7 +4,7 @@ In this tutorial, we are going to create a webhook node that will automatically 
 We will be using [Alchemy Webhook](https://docs.alchemy.com/reference/notify-api-quickstart) to listen for [Mined Transaction](https://docs.alchemy.com/reference/notify-api-quickstart#1-mined-transaction) webhook call.
 
 ## Prerequisite
-- Have Outerbridge setup and working. See [setup guide](/get-started).
+- Have simplifi setup and working. See [setup guide](/get-started).
 - Alchemy account and Auth token. You can find the Auth token at [Notify](https://dashboard.alchemyapi.io/notify) page.
 
 <br />
@@ -12,7 +12,7 @@ We will be using [Alchemy Webhook](https://docs.alchemy.com/reference/notify-api
 
 
 ## Step 1
-Go to `Outerbridge/packages/components/nodes`, create a folder `MinedTransactionWebhook`. Inside the folder create a file `MinedTransactionWebhook.ts`.
+Go to `simplifi/packages/components/nodes`, create a folder `MinedTransactionWebhook`. Inside the folder create a file `MinedTransactionWebhook.ts`.
 
 ## Step 2
 Add an icon into the folder. It can be either `jpg`, `png`, or `svg` format.
@@ -150,7 +150,7 @@ Inside the `credentialMethod` field, user is able to select `alchemyApi`. We wil
 Lastly, specify remaining parameters needed to create **Mined Transactions** Webhook. In this case, `app_id` is one of the required query parameters as specified [here](https://docs.alchemy.com/reference/create-webhook).
 
 ## Step 6
-Go to `Outerbridge/packages/components/credentials`, create a folder `Alchemy`. Inside the folder create a file `AlchemyApi.ts`.
+Go to `simplifi/packages/components/credentials`, create a folder `Alchemy`. Inside the folder create a file `AlchemyApi.ts`.
 You can skip this if there is an existing one already.
 Copy and paste the following:
 
@@ -186,7 +186,7 @@ module.exports = { credClass: AlchemyApi }
 ```
 
 ## Step 7
-Back to `Outerbridge/packages/components/nodes/MinedTransactionWebhook/MinedTransactionWebhook.ts`, create 2 webhook methods - `createWebhook()` and `deleteWebhook()` after the constructor. 
+Back to `simplifi/packages/components/nodes/MinedTransactionWebhook/MinedTransactionWebhook.ts`, create 2 webhook methods - `createWebhook()` and `deleteWebhook()` after the constructor. 
 These 2 webhook methods are needed for every webhook node. 
 
 `createWebhook()` will be executed whenever we start testing a webhook node, or start deploying a workflow with webhook node.
@@ -439,7 +439,7 @@ module.exports = { nodeClass: MinedTransactionWebhook }
 ```
 
 ## Step 11
-At root path `Outerbridge`, run `yarn run build` to build the node into `dist` folder which will be eventually picked up by `server`. 
+At root path `simplifi`, run `yarn run build` to build the node into `dist` folder which will be eventually picked up by `server`. 
 After build has successfully finished, run `yarn run dev` for development, or `yarn run start` for production.
 
 🎉 You have successfully created a webhook node!
@@ -448,14 +448,14 @@ After build has successfully finished, run `yarn run dev` for development, or `y
 1. Open up a new canvas, add `MinedTransactionWebhook` node and fill in the inputs. Then click Save & Test Webhook.
 
 <br />
-<img src="/mined-transaction-webhook.gif" alt="Outerbridge Mined Transaction Webhook" height="auto" width='100%'></img>
+<img src="/mined-transaction-webhook.gif" alt="simplifi Mined Transaction Webhook" height="auto" width='100%'></img>
 
 2. Go to [Alchemy Notify Page](https://dashboard.alchemyapi.io/notify), you will see a new webhook has been created. Click `Send Test Notification`.
 
 <br />
 <img src="/alchemy-send-webhook.png" alt="Alchemy Send Webhook" height="auto" width='100%'></img>
 
-3. Back to Outerbridge, you will now see the webhook has been received and output response is available.
+3. Back to simplifi, you will now see the webhook has been received and output response is available.
 
 <br />
 <img src="/alchemy-webhook-received.png" alt="Alchemy Receive Webhook" height="auto" width='100%'></img>

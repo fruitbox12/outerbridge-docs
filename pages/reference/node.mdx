@@ -54,7 +54,7 @@ They are designed to give a better user experience in ui, allowing user to enter
 | inputParameters `(optional)` | Remaining input parameters (e.g: query params, body)
 
 <br />
-<img src="/node-parameters.gif" alt="Outerbridge Node Parameters" height="auto" width='100%'></img>
+<img src="/node-parameters.gif" alt="simplifi Node Parameters" height="auto" width='100%'></img>
 
 **Example**
 ```jsx
@@ -153,12 +153,12 @@ Each node parameter has the following properties:
 | name            						| String    													| Actual name of option using [CamelCase](https://wiki.c2.com/?CamelCase)                                                                               
 | description `(optional)`   			| String    													| Description of option                                                                                                                                     
 | parentGroup `(optional)`   			| String    													| Group of option                                                                                                                                     
-| inputParameters `(optional)`   		| String    													| Description of additional parameter needed for this option. See [inputParameters example](https://github.com/Outerbridgeio/Outerbridge/blob/master/packages/components/src/ETHOperations.ts)                                                                                                                                    
-| exampleParameters `(optional)`   		| String    													| Example of additional parameter needed for this option. See [exampleParameters example](https://github.com/Outerbridgeio/Outerbridge/blob/master/packages/components/src/ETHOperations.ts)                                                                                                                                  
-| exampleResponse `(optional)`   		| Object    													| Example of output response for this option. See [exampleResponse example](https://github.com/Outerbridgeio/Outerbridge/blob/master/packages/components/src/ETHOperations.ts)                                                                                                                                      
+| inputParameters `(optional)`   		| String    													| Description of additional parameter needed for this option. See [inputParameters example](https://github.com/simplifiio/simplifi/blob/master/packages/components/src/ETHOperations.ts)                                                                                                                                    
+| exampleParameters `(optional)`   		| String    													| Example of additional parameter needed for this option. See [exampleParameters example](https://github.com/simplifiio/simplifi/blob/master/packages/components/src/ETHOperations.ts)                                                                                                                                  
+| exampleResponse `(optional)`   		| Object    													| Example of output response for this option. See [exampleResponse example](https://github.com/simplifiio/simplifi/blob/master/packages/components/src/ETHOperations.ts)                                                                                                                                      
 | show `(optional)`						| [`INodeDisplay`](/reference/node#node-parameter-display) 		| Show this option if condition is met
 | hide `(optional)`						| [`INodeDisplay`](/reference/node#node-parameter-display) 		| Hide this option if condition is met
-| hideRegisteredCredential `(optional)`	| Boolean 														| Only used on `credentialMethod` option to hide registeredCredentials. See [hideRegisteredCredential example](https://github.com/Outerbridgeio/Outerbridge/blob/master/packages/components/nodes/HTTP/HTTP.ts#L88)  
+| hideRegisteredCredential `(optional)`	| Boolean 														| Only used on `credentialMethod` option to hide registeredCredentials. See [hideRegisteredCredential example](https://github.com/simplifiio/simplifi/blob/master/packages/components/nodes/HTTP/HTTP.ts#L88)  
 
 
 ## Node Parameter Display
@@ -341,7 +341,7 @@ A parameter can be one of these types: `string`, `number`, `boolean`, `options`,
 const inputString = nodeData[paramCategory].inputString as string;
 ```
 <br />
-<img src="/input-string.png" alt="Outerbridge Input String" height="auto" width='max-content'></img>
+<img src="/input-string.png" alt="simplifi Input String" height="auto" width='max-content'></img>
 
 ### Number
 ```jsx
@@ -355,7 +355,7 @@ const inputString = nodeData[paramCategory].inputString as string;
 const inputNumber = nodeData[paramCategory].inputNumber as number;
 ```
 <br />
-<img src="/input-number.png" alt="Outerbridge Input Number" height="auto" width='max-content'></img>
+<img src="/input-number.png" alt="simplifi Input Number" height="auto" width='max-content'></img>
 
 ### Options
 ```jsx
@@ -379,7 +379,7 @@ const inputNumber = nodeData[paramCategory].inputNumber as number;
 const inputOptions = nodeData[paramCategory].inputOptions as string;
 ```
 <br />
-<img src="/input-options.png" alt="Outerbridge Input Options" height="auto" width='max-content'></img>
+<img src="/input-options.png" alt="simplifi Input Options" height="auto" width='max-content'></img>
 
 
 ### AsyncOptions
@@ -452,7 +452,7 @@ class ExampleAsyncOption implements INode {
 }
 ```
 <br />
-<img src="/async-options.gif" alt="Outerbridge Async Options" height="auto" width='max-content'></img>
+<img src="/async-options.gif" alt="simplifi Async Options" height="auto" width='max-content'></img>
 
 `AsyncOptions` can also be used with `loadFromDbCollections` to retrieve database collection.
 
@@ -495,7 +495,7 @@ class ExampleAsyncOption implements INode {
     }
 }
 ```
-See `ContractEventTrigger.ts` [example](https://github.com/Outerbridgeio/Outerbridge/blob/master/packages/components/nodes/ContractEventTrigger/ContractEventTrigger.ts#L62)
+See `ContractEventTrigger.ts` [example](https://github.com/simplifiio/simplifi/blob/master/packages/components/nodes/ContractEventTrigger/ContractEventTrigger.ts#L62)
 
 
 ### Array
@@ -541,9 +541,9 @@ for (const item of nodeData[paramCategory].inputArray as IArray[]) {
 }
 ```
 <br />
-<img src="/input-array.png" alt="Outerbridge Input Array" height="auto" width='max-content'></img>
+<img src="/input-array.png" alt="simplifi Input Array" height="auto" width='max-content'></img>
 
-See `Scheduler.ts` [example](https://github.com/Outerbridgeio/Outerbridge/blob/master/packages/components/nodes/Scheduler/Scheduler.ts#L48)
+See `Scheduler.ts` [example](https://github.com/simplifiio/simplifi/blob/master/packages/components/nodes/Scheduler/Scheduler.ts#L48)
 
 ### Password
 ```jsx
@@ -557,7 +557,7 @@ See `Scheduler.ts` [example](https://github.com/Outerbridgeio/Outerbridge/blob/m
 const inputPW = nodeData[paramCategory].inputPW as string;
 ```
 <br />
-<img src="/input-password.png" alt="Outerbridge Input Password" height="auto" width='max-content'></img>
+<img src="/input-password.png" alt="simplifi Input Password" height="auto" width='max-content'></img>
 
 ### Json
 Can be used when the parameter is of JSON format `{}` or an array `[]`.
@@ -579,7 +579,7 @@ try {
 }
 ```
 <br />
-<img src="/input-json.png" alt="Outerbridge Input Json" height="auto" width='max-content'></img>
+<img src="/input-json.png" alt="simplifi Input Json" height="auto" width='max-content'></img>
 
 ### Code
 ```jsx
@@ -593,7 +593,7 @@ try {
 const inputCode = nodeData[paramCategory].inputCode as string;
 ```
 <br />
-<img src="/input-code.png" alt="Outerbridge Input Code" height="auto" width='max-content'></img>
+<img src="/input-code.png" alt="simplifi Input Code" height="auto" width='max-content'></img>
 
 ### Date
 ```jsx
@@ -609,7 +609,7 @@ const inputDate = nodeData[paramCategory].inputDate as string;
 const startTime = Date.parse(inputDate);
 ```
 <br />
-<img src="/input-date.png" alt="Outerbridge Input Date" height="auto" width='max-content'></img>
+<img src="/input-date.png" alt="simplifi Input Date" height="auto" width='max-content'></img>
 
 
 ### File
@@ -627,7 +627,7 @@ const splitDataURI = fileBase64.split(',');
 const bf = Buffer.from(splitDataURI[1], "base64");
 ```
 <br />
-<img src="/input-file.png" alt="Outerbridge Input File" height="auto" width='max-content'></img>
+<img src="/input-file.png" alt="simplifi Input File" height="auto" width='max-content'></img>
 
 
 ### Folder
@@ -650,4 +650,4 @@ for (let i = 0; i < base64Array.length; i+=1 ) {
 }
 ```
 <br />
-<img src="/input-folder.png" alt="Outerbridge Input Folder" height="auto" width='max-content'></img>
+<img src="/input-folder.png" alt="simplifi Input Folder" height="auto" width='max-content'></img>

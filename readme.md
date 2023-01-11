@@ -1,20 +1,20 @@
-# Outerbridge - Automate Web3 and Web2 applications
+# simplifi - Automate Web3 and Web2 applications
 
-Docs page for Outerbridge.
+Docs page for simplifi.
 
-![Outerbridge](/public/outerbridge_brand.svg)
+![simplifi](/public/simplifi_brand.svg)
 
-![Outerbridge Screenshot](/public/banner_svg.svg)
+![simplifi Screenshot](/public/banner_svg.svg)
 
 ## Setup
 1. Clone the repository
 	```
-	git clone https://github.com/Outerbridgeio/outerbridge-docs.git
+	git clone https://github.com/simplifiio/simplifi-docs.git
 	```
 
 2. Go into repository folder
 	```
-	cd outerbridge-docs
+	cd simplifi-docs
 	```
 
 3. Install all dependencies:
