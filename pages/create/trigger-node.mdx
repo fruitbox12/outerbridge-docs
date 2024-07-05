@@ -1,56 +1,64 @@
 import Bleed from 'nextra-theme-docs/bleed'
 
-# Weave.Services Platform - Page Routing and Structure
+# 🌐 Weave.Services Platform - Page Routing and Structure
 
 This document provides an overview of the page routing and structure within the `ui/src/app` directory of the Weave.Services platform.
 
-## Pages Tree Structure
+## 📂 Pages Tree Structure
 
-### Root Directory
+### 📁 Root Directory
 
 The root directory for pages is `ui/src/app/(pages)`. This directory contains subdirectories for different sections of the platform.
 
-### Auth Pages
+### 🔐 Auth Pages
 
 The authentication pages are located within the `auth` directory. These pages handle user login and registration.
 
 **Path:** `ui/src/app/(pages)/auth`
 
 **Files and Subdirectories:**
-- `login`
+
+- **`login`**
   - **Path:** `ui/src/app/(pages)/auth/login`
   - **Description:** Handles user login functionality.
-- `register`
+  
+- **`register`**
   - **Path:** `ui/src/app/(pages)/auth/register`
   - **Description:** Handles user registration functionality.
-- `layout.tsx`
+  
+- **`layout.tsx`**
   - **Path:** `ui/src/app/(pages)/auth/layout.tsx`
   - **Description:** Layout component for the authentication pages.
-- `page.tsx`
+  
+- **`page.tsx`**
   - **Path:** `ui/src/app/(pages)/auth/page.tsx`
   - **Description:** Main component for the authentication pages.
 
-### Dashboard Pages
+### 📊 Dashboard Pages
 
 The dashboard pages are located within the `dashboard` directory. These pages provide various dashboard functionalities including settings and workspaces.
 
 **Path:** `ui/src/app/(pages)/(dashboard)/dashboard`
 
 **Files and Subdirectories:**
-- `settings`
+
+- **`settings`**
   - **Path:** `ui/src/app/(pages)/(dashboard)/dashboard/settings`
   - **Description:** Handles user settings functionality.
-- `workspaces`
+  
+- **`workspaces`**
   - **Path:** `ui/src/app/(pages)/(dashboard)/dashboard/workspaces`
   - **Description:** Manages workspaces for the user.
-- `layout.tsx`
+  
+- **`layout.tsx`**
   - **Path:** `ui/src/app/(pages)/(dashboard)/dashboard/layout.tsx`
   - **Description:** Layout component for the dashboard pages.
-- `page.tsx`
+  
+- **`page.tsx`**
   - **Path:** `ui/src/app/(pages)/(dashboard)/dashboard/page.tsx`
   - **Description:** Main component for the dashboard pages.
 
-#### Dashboard Page Code Example
+### ✨ Dashboard Page Code Example
 
 ```jsx
 'use client'
