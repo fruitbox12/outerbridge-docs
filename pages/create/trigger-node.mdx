@@ -1,296 +1,92 @@
-# Trigger node
+import Bleed from 'nextra-theme-docs/bleed'
 
-In this tutorial, we are going to create a trigger node that will automatically gets triggered when a new block is mined on Ethereum Mainnet.
+# Weave.Services Platform - Page Routing and Structure
 
-## Prerequisite
-- Have simplifi setup and working. See [setup guide](/get-started).
+This document provides an overview of the page routing and structure within the `ui/src/app` directory of the Weave.Services platform.
 
-## Step 1
-Go to `simplifi/packages/components/nodes`, create a folder `MinedBlockTrigger`. Inside the folder create a file `MinedBlockTrigger.ts`.
+## Pages Tree Structure
 
-## Step 2
-Add an icon into the folder. It can be either `jpg`, `png`, or `svg` format.
-For instance, download this [Ethereum Icon](https://cryptologos.cc/logos/ethereum-eth-logo.svg?v=023) and save as `mined-block-trigger.svg` into the folder.
+### Root Directory
 
-## Step 3
-In `MinedBlockTrigger.ts`, import libraries, interfaces and utils.
+The root directory for pages is `ui/src/app/(pages)`. This directory contains subdirectories for different sections of the platform.
 
-```jsx
-import {
-	INode, 
-    INodeData, 
-    INodeParams, 
-    IProviders, 
-    NodeType,
-} from '../../src/Interface';
-import { returnNodeExecutionData } from '../../src/utils';
-import EventEmitter from 'events';
-import { ethers } from "ethers";
-```
+### Auth Pages
 
-## Step 4
-Create the class and its constructor with properties. Read more on [Node Properties](/reference/node#node-properties).
-```jsx
-//...imports
-class MinedBlockTrigger extends EventEmitter implements INode {
-	
-    label: string;
-    name: string;
-    type: NodeType;
-    description?: string;
-    version: number;
-	icon: string;
-    incoming: number;
-	outgoing: number;
+The authentication pages are located within the `auth` directory. These pages handle user login and registration.
 
-    constructor() {
-		super();
-        this.label = 'Mined Block Trigger';
-		this.name = 'minedBlockTrigger';
-		this.icon = 'mined-block-trigger.svg';
-		this.type = 'trigger';
-		this.version = 1.0;
-		this.description = 'Start workflow whenever a block is mined';
-		this.incoming = 0;
-		this.outgoing = 1;
-    }
-}
-module.exports = { nodeClass: MinedBlockTrigger }
-```
+**Path:** `ui/src/app/(pages)/auth`
 
-## Step 5
-Add node parameters `networks`. Read more on [Node Parameters](/reference/node#node-parameters).
+**Files and Subdirectories:**
+- `login`
+  - **Path:** `ui/src/app/(pages)/auth/login`
+  - **Description:** Handles user login functionality.
+- `register`
+  - **Path:** `ui/src/app/(pages)/auth/register`
+  - **Description:** Handles user registration functionality.
+- `layout.tsx`
+  - **Path:** `ui/src/app/(pages)/auth/layout.tsx`
+  - **Description:** Layout component for the authentication pages.
+- `page.tsx`
+  - **Path:** `ui/src/app/(pages)/auth/page.tsx`
+  - **Description:** Main component for the authentication pages.
+
+### Dashboard Pages
+
+The dashboard pages are located within the `dashboard` directory. These pages provide various dashboard functionalities including settings and workspaces.
+
+**Path:** `ui/src/app/(pages)/(dashboard)/dashboard`
+
+**Files and Subdirectories:**
+- `settings`
+  - **Path:** `ui/src/app/(pages)/(dashboard)/dashboard/settings`
+  - **Description:** Handles user settings functionality.
+- `workspaces`
+  - **Path:** `ui/src/app/(pages)/(dashboard)/dashboard/workspaces`
+  - **Description:** Manages workspaces for the user.
+- `layout.tsx`
+  - **Path:** `ui/src/app/(pages)/(dashboard)/dashboard/layout.tsx`
+  - **Description:** Layout component for the dashboard pages.
+- `page.tsx`
+  - **Path:** `ui/src/app/(pages)/(dashboard)/dashboard/page.tsx`
+  - **Description:** Main component for the dashboard pages.
+
+#### Dashboard Page Code Example
 
 ```jsx
-//...imports
-class MinedBlockTrigger extends EventEmitter implements INode {
-	
-    //...properties
-    networks: INodeParams[];
+'use client'
+// Indicates that this component is client-side rendered.
 
-    constructor() {
-        super();
-        //...properties
-        this.networks = [
-			{
-				label: 'Network',
-				name: 'network',
-				type: 'options',
-				options: [
-					{
-						label: 'Ethereum Mainnet',
-						name: 'homestead',
-					},
-				],
-				default: 'homestead',
-			},
-        ] as INodeParams[];
+import { useEffect } from 'react'
+// Importing the useEffect hook from React.
+
+import { useWorkflowByUser } from '@/hooks/useWorkflow'
+// Custom hook to fetch workflows associated with the user.
+
+import { DashboardContent } from '@/components/dashboard'
+// Component to display the dashboard content.
+
+import { useCustomReducer } from '@/store/dashboard'
+// Custom hook to manage dashboard state.
+
+export default function DashboardPage() {
+  const { response, loading, error } = useWorkflowByUser()
+  // Destructuring response, loading, and error states from useWorkflowByUser hook.
+
+  const [state, ] = useCustomReducer()
+  // Destructuring state from useCustomReducer hook.
+
+  useEffect(() => {
+    if (error) {
+      console.log('Error fetching data', error)
+      // Logs any error that occurs during data fetching.
     }
+  }, [response, loading, error])
+  // useEffect hook to log errors whenever response, loading, or error changes.
+
+  return (
+    <div className='max-w-6xl min-h-[calc(100vh-85px)] px-6 my-6 mx-auto w-full'>
+      <DashboardContent content={{ workflows: state.workflows ? state.workflows : [] }} loading={loading} />
+      // Render the DashboardContent component with workflows and loading state.
+    </div>
+  )
 }
-module.exports = { nodeClass: MinedBlockTrigger }
-```
-
-In this tutorial, we only allow user to select Ethereum Mainnet for simplicity.
-
-## Step 6
-Create 2 functions after the constructor. The exact 2 functions are needed for every trigger node.
-
-```jsx
-//...imports
-class MinedBlockTrigger extends EventEmitter implements INode {
-	
-    //...properties
-    //...parameters
-
-    constructor() {
-        //...properties
-        //...parameters 
-    }
-
-    async runTrigger(nodeData: INodeData): Promise<void> {
-        // function to start listening event
-    }
-
-    async removeTrigger(nodeData: INodeData): Promise<void> {
-        // function to remove event listener
-    }
-}
-module.exports = { nodeClass: MinedBlockTrigger }
-```
-
-## Step 7
-Inside `runTrigger()` function, copy and paste the following code:
-
-```jsx
-const networksData = nodeData.networks;
-
-if (networksData === undefined) {
-    throw new Error('Required data missing');
-}
-
-const network = networksData.network as string;
-const emitEventKey = nodeData.emitEventKey as string;
-
-let provider: any;
-
-if (network === 'homestead')
-    provider = new ethers.providers.CloudflareProvider();
-
-provider.on("block", (blockNumber: any) => {
-    // Emitted on every block change
-    this.emit(emitEventKey, returnNodeExecutionData(blockNumber));
-});
-```
-
-First get the network choice that user has selected from ui.
-For every trigger node, an `emitEventKey` will be available from `nodeData.emitEventKey`.
-We start declaring the event listener - `provider`. It this example, we will be using the provider event emitter from [ethers.js](https://docs.ethers.io/v5/api/providers/provider/#Provider-on) to listen for `"block"` event.
-Whenever a new block is mined, `provider.on("block")` will gets triggered.
-We then emit the result using the `emitEventKey`.
-
-## Step 8
-Inside `removeTrigger()` function, copy and paste the following code:
-
-```jsx
-const emitEventKey = nodeData.emitEventKey || '';
-if (Object.prototype.hasOwnProperty.call(this.providers, emitEventKey)) {
-    const provider = this.providers[emitEventKey].provider;
-    provider.off("block");
-    this.removeAllListeners(emitEventKey);
-}
-```
-`removeTrigger()` will be called whenever user stops a deployed workflow, or after finish testing the trigger node.
-In order to remember which event listener to remove, we are going to declare a class-scoped variable - `providers`.
-It will be an object with `emitEventKey` as the key and event listener object as value.
-```json
-// providers
-{
-    [emitEventKey]: <EventListenerObject>
-}
-```
-
-## Step 9 
-Declare class-scoped variable `providers`. Then add new key-value pair in `runTrigger()`.
-
-```jsx
-//...imports
-class MinedBlockTrigger extends EventEmitter implements INode {
-	
-    //...properties
-    //...parameters
-    providers: IProviders;
-
-    constructor() {
-        //...properties
-        //...parameters
-        this.providers = {};
-    }
-
-    async runTrigger(nodeData: INodeData): Promise<void> {
-        // ...runTrigger
-        this.providers[emitEventKey] = { provider };
-    }
-}
-module.exports = { nodeClass: MinedBlockTrigger }
-```
-
-## Step 10
-At root path `simplifi`, run `yarn run build` to build the node into `dist` folder which will be eventually picked up by `server`. 
-After build has successfully finished, run `yarn run dev` for development, or `yarn run start` for production.
-
-🎉 You have successfully created a trigger node!
-
-<br />
-<img src="/create-trigger-node.gif" alt="simplifi Mined Block Trigger" height="auto" width='100%'></img>
-
-**Complete Code**
-```jsx
-import {
-	INode, 
-    INodeData, 
-    INodeParams, 
-    IProviders, 
-    NodeType,
-} from '../../src/Interface';
-import { returnNodeExecutionData } from '../../src/utils';
-import EventEmitter from 'events';
-import { ethers } from "ethers";
-
-class MinedBlockTrigger extends EventEmitter implements INode {
-	
-    label: string;
-    name: string;
-    type: NodeType;
-    description?: string;
-    version: number;
-	icon: string;
-    incoming: number;
-	outgoing: number;
-    actions: INodeParams[];
-    networks: INodeParams[];
-	providers: IProviders;
-
-    constructor() {
-		super();
-        this.label = 'Mined Block Trigger';
-		this.name = 'MinedBlockTrigger';
-		this.icon = 'mined-block-trigger.svg';
-		this.type = 'trigger';
-		this.version = 1.0;
-		this.description = 'Start workflow whenever a block is mined';
-		this.incoming = 0;
-		this.outgoing = 1;
-        this.networks = [
-			{
-				label: 'Network',
-				name: 'network',
-				type: 'options',
-				options: [
-					{
-						label: 'Ethereum Mainnet',
-						name: 'homestead',
-					},
-				],
-				default: 'homestead',
-			},
-        ] as INodeParams[];
-		this.providers = {};
-    }
-
-    async runTrigger(nodeData: INodeData): Promise<void> {
-		const networksData = nodeData.networks;
-
-        if (networksData === undefined) {
-            throw new Error('Required data missing');
-        }
-
-		const network = networksData.network as string;
-		const emitEventKey = nodeData.emitEventKey as string;
-
-		let provider: any;
-
-		if (network === 'homestead')
-			provider = new ethers.providers.CloudflareProvider();
-
-		provider.on("block", (blockNumber: any) => {
-			// Emitted on every block change
-			this.emit(emitEventKey, returnNodeExecutionData(blockNumber));
-		});
-
-		this.providers[emitEventKey] = { provider };
-    }
-
-    async removeTrigger(nodeData: INodeData): Promise<void> {
-		const emitEventKey = nodeData.emitEventKey || '';
-		
-		if (Object.prototype.hasOwnProperty.call(this.providers, emitEventKey)) {
-			const provider = this.providers[emitEventKey].provider;
-    		provider.off("block");
-    		this.removeAllListeners(emitEventKey);
-		}
-    }
-}
-
-module.exports = { nodeClass: MinedBlockTrigger }
-```
-

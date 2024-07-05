@@ -1,5 +1,9 @@
 {
-  "trigger-node": "Trigger Node",
-  "action-node": "Action Node",
-  "webhook-node": "Webhook Node"
+  "trigger-node": "Platform Pages",
+  "action-node": "Type Definitions",
+  "webhook-node": "Dependencies",
+  "constants": "Constants",
+  "environment-vars": "Environment Variables",
+  "canvas": "Canvas"
+
 }

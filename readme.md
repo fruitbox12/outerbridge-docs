@@ -1,20 +1,20 @@
-# simplifi - Automate Web3 and Web2 applications
+# weave.cloud - Automate Web3 and Web2 applications
 
-Docs page for simplifi.
+Docs page for weave.cloud.
 
-![simplifi](/public/simplifi_brand.svg)
+![weave.cloud](/public/weave.cloud_brand.svg)
 
-![simplifi Screenshot](/public/banner_svg.svg)
+![weave.cloud Screenshot](/public/banner_svg.svg)
 
 ## Setup
 1. Clone the repository
 	```
-	git clone https://github.com/simplifiio/simplifi-docs.git
+	git clone https://github.com/weave.cloudio/weave.cloud-docs.git
 	```
 
 2. Go into repository folder
 	```
-	cd simplifi-docs
+	cd weave.cloud-docs
 	```
 
 3. Install all dependencies:

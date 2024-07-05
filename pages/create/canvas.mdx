@@ -1,0 +1,188 @@
+# 🌟 Canvas Overview
+
+The canvas in Weave.Services is a central feature designed to facilitate the creation, visualization, and management of workflows. Inspired by AWS Step Functions and state machines, the canvas allows users to intuitively construct and interact with complex workflows using a graphical interface.
+
+## 📚 Theory and Structure
+
+### Theory
+
+The canvas operates on the principle of directed graphs, where nodes represent discrete steps or actions in the workflow, and edges represent the connections or transitions between these steps. This structure allows for both linear and branching workflows, accommodating a variety of complex processes.
+
+### Structure
+
+- **Nodes**: Fundamental units of the workflow.
+- **Edges**: Connections between nodes.
+
+```ts
+const nodes = [{ id: '1', data: { label: 'Node 1' }, position: { x: 0, y: 0 } }];
+const edges = [{ id: 'e1-2', source: '1', target: '2' }];`
+```
+⚙️ Mechanisms
+-------------
+
+### Node Management
+
+#### Registry
+
+Nodes are defined in a registry that includes their type, schema, and associated icons. This registry is typically fetched from a centralized repository such as GitHub.
+
+
+
+
+
+```ts
+const registry = fetchRegistry();
+```
+
+#### Add Nodes
+
+Users can add new nodes to the canvas from predefined categories available in the registry. Each node can be customized with specific parameters and actions.
+
+
+
+
+
+```ts
+const newNode = { id: '2', data: { label: 'Node 2' }, position: { x: 100, y: 100 } };
+setNodes((nodes) => [...nodes, newNode]);
+```
+
+#### Edit Nodes
+
+Existing nodes on the canvas can be edited to update their input parameters or actions. Changes are immediately reflected in the workflow.
+
+
+
+
+```ts
+
+const updateNode = (id, data) => setNodes((nodes) => nodes.map((node) => node.id === id ? { ...node, data } : node));
+```
+
+### Edge Management
+
+#### Connect Nodes
+
+Users can create edges to connect nodes, defining the flow of execution. Edges can be added dynamically by connecting node outputs to inputs.
+
+
+
+
+```ts
+
+const newEdge = { id: 'e1-2', source: '1', target: '2' };
+setEdges((edges) => [...edges, newEdge]);
+```
+
+#### Update Edges
+
+Edges can be updated to reflect changes in the workflow, ensuring the connections accurately represent the desired execution path.
+
+
+
+
+```ts
+
+const updateEdge = (id, source, target) => setEdges((edges) => edges.map((edge) => edge.id === id ? { ...edge, source, target } : edge));
+```
+
+### State Management
+
+#### Persist State
+
+The state of the canvas, including all nodes and edges, is persisted to ensure that workflows can be saved, updated, and reloaded without losing information.
+
+
+
+
+
+```ts
+
+const saveState = () => localStorage.setItem('workflow', JSON.stringify({ nodes, edges }));
+```
+
+#### Update State
+
+Any changes to the nodes or edges trigger updates to the workflow's state, maintaining consistency and accuracy.
+
+
+
+
+```ts
+
+const triggerUpdate = () => setState({ nodes, edges });
+```
+
+🌟 Features
+-----------
+
+### User Interface
+
+#### React Flow Canvas
+
+The graphical interface where users can drag and drop nodes, connect them with edges, and visually design their workflows.
+
+
+
+
+
+```ts
+
+<ReactFlow nodes={nodes} edges={edges} />
+```
+
+#### Interactive Elements
+
+Nodes and edges are interactive, allowing users to click, drag, edit, and delete them as needed.
+
+
+
+
+
+```ts
+
+const onNodeClick = (event, node) => console.log('Node clicked:', node);
+```
+
+### Collaboration
+
+#### Collaborative Editing
+
+The canvas supports real-time collaboration using technologies like yJS, enabling multiple users to work on the same workflow simultaneously.
+
+
+
+
+
+```ts
+
+const yjsDoc = new Y.Doc();
+```
+
+#### Team Workspaces
+
+Workflows can be associated with team workspaces, where members can be invited to collaborate and contribute.
+
+
+
+
+
+```ts
+
+const inviteMembers = (workspaceId) => inviteToWorkspace(workspaceId, userIds);
+```
+
+### Integration with External Services
+
+Node definitions and schemas can be fetched from external services such as GitHub, ensuring that nodes are up-to-date and consistent.
+
+
+
+
+```ts
+const nodeDefinitions = fetchNodeDefinitionsFromGitHub();
+```
+
+* * * * *
+
+This overview provides a structured and detailed explanation of the canvas, highlighting its key mechanisms and features. The small code snippets illustrate how each part of the canvas operates within the Weave.Services platform.

@@ -1,0 +1,236 @@
+import Bleed from 'nextra-theme-docs/bleed'
+
+# Weave.Services Platform - Constants
+
+This document provides a concise overview of the constants used in the Weave.Services platform. These constants are essential for maintaining consistent values across the platform, aiding in configuration, navigation, node types, and toast notifications.
+
+## Constants Directory Structure
+
+The `ui/src/constants` directory contains various constants that are used throughout the platform.
+
+### Directory Structure
+
+**Path:** `ui/src/constants`
+
+**Files and Subdirectories:**
+- `executionExample.ts`
+  - Contains example constants related to execution parameters.
+- `navigation.ts`
+  - Contains constants related to navigation items.
+- `nodes.ts`
+  - Contains constants defining different node types.
+- `paramsType.ts`
+  - Contains constants related to parameter types.
+- `toast-options.ts`
+  - Contains constants for configuring toast notifications.
+
+### Constants and Their Usage
+
+#### `toast-options.ts`
+
+Defines the configuration for toast notifications, which provide feedback to users.
+
+**Example Snippet:**
+```typescript
+import { ToastOptions, Bounce } from 'react-toastify'
+
+interface ToastOptionsParams {
+  position?: ToastOptions['position']
+  autoClose?: ToastOptions['autoClose']
+  hideProgressBar?: ToastOptions['hideProgressBar']
+  closeOnClick?: ToastOptions['closeOnClick']
+  pauseOnHover?: ToastOptions['pauseOnHover']
+  draggable?: ToastOptions['draggable']
+  progress?: ToastOptions['progress']
+  transition?: ToastOptions['transition']
+  progressClassName?: ToastOptions['progressClassName']
+  bodyClassName?: ToastOptions['bodyClassName']
+  className?: ToastOptions['className']
+}
+
+export const TOAST_SUCCESSFUL_OPTION = (theme: string, options: ToastOptionsParams = {}): ToastOptions<unknown> => {
+  return {
+    position: options.position ?? 'bottom-left',
+    autoClose: options.autoClose ?? 3000,
+    hideProgressBar: options.hideProgressBar ?? false,
+    closeOnClick: options.closeOnClick ?? true,
+    pauseOnHover: options.pauseOnHover ?? true,
+    draggable: options.draggable ?? true,
+    progress: options.progress ?? undefined,
+    theme: theme || 'light',
+    transition: options.transition ?? Bounce,
+    progressClassName: options.progressClassName,
+    bodyClassName: options.bodyClassName,
+    className: options.className,
+  }
+}
+```
+**Usage:**
+
+-   **Components:** Used in components that trigger toast notifications to provide feedback to users.
+-   **Modules:** Utilized in notification modules to ensure consistent toast configuration.
+
+#### `paramsType.ts`
+
+Defines the types of parameters used within the platform.
+
+**Example Snippet:**
+```ts
+export const PARAMS_TYPES: Record<string, string> = {
+  actions: 'Actions',
+  networks: 'Networks',
+  credentials: 'Credentials',
+  inputParameters: 'Input Parameters',
+}
+```
+
+**Usage:**
+
+-   **Components:** Used in form components to label and handle different parameter types.
+-   **Modules:** Utilized in parameter handling modules to ensure consistency in parameter usage.
+
+#### `nodes.ts`
+
+Defines different node types available in the platform, which are used in the visual workflow editor.
+
+**Example Snippet:**
+```ts
+import { NodeProps } from '@/modules/reactflow-canvas/types'
+
+export const NODES_TYPE: Array<NodeProps> = [
+  {
+    icon: '',
+    name: 'HTTP',
+    type: 'http',
+    outgoing: 1,
+    incoming: 1,
+  },
+  {
+    icon: '',
+    name: 'Uniswap',
+    type: 'uniswap',
+    outgoing: 1,
+    incoming: 1,
+  },
+  {
+    icon: '',
+    name: 'Zapier API Trigger',
+    type: 'zapierAPITrigger',
+    outgoing: 1,
+    incoming: 1,
+  },
+  {
+    icon: '',
+    name: 'If Else',
+    type: 'ifElse',
+    outgoing: 1,
+    incoming: 1,
+  },
+  {
+    icon: '',
+    name: 'Azure Open AI',
+    type: 'azureOpenAI',
+    outgoing: 1,
+    incoming: 1,
+  },
+  {
+    icon: '',
+    name: 'Image Editor',
+    type: 'imageEditor',
+    outgoing: 1,
+    incoming: 1,
+  },
+  {
+    icon: '',
+    name: 'Open AI',
+    type: 'openAI',
+    outgoing: 1,
+    incoming: 1,
+  },
+  {
+    icon: '',
+    name: 'Hugging Face',
+    type: 'huggingFace',
+    outgoing: 1,
+    incoming: 1,
+  },
+  {
+    icon: '',
+    name: 'Discord',
+    type: 'discord',
+    outgoing: 1,
+    incoming: 1,
+  },
+  {
+    icon: '',
+    name: 'Email Send',
+    type: 'emailSend',
+    outgoing: 1,
+    incoming: 1,
+  },
+  {
+    icon: '',
+    name: 'Node JS',
+    type: 'nodeJS',
+    outgoing: 1,
+    incoming: 1,
+  },
+  {
+    icon: '',
+    name: 'Etherscan',
+    type: 'etherscan',
+    outgoing: 1,
+    incoming: 0,
+  },
+  {
+    icon: '',
+    name: 'Cron',
+    type: 'cron',
+    outgoing: 1,
+    incoming: 0,
+  },
+  {
+    icon: '',
+    name: 'Webhook',
+    type: 'webhook',
+    outgoing: 1,
+    incoming: 0,
+  }
+]
+```
+
+**Usage:**
+
+-   **Components:** Used in the visual workflow editor to populate the available node types.
+-   **Modules:** Utilized in node management modules to ensure consistent handling of node types.
+
+#### `navigation.ts`
+
+Defines the navigation items used within the platform.
+
+**Example Snippet:**
+```ts
+import { NavItem } from '@/types/nav'
+
+export const navItems: NavItem[] = [
+  {
+    title: 'Dashboard',
+    href: '/dashboard',
+    icon: 'dashboard',
+    label: 'Dashboard'
+  },
+  {
+    title: 'Workspaces',
+    href: '/dashboard/workspaces',
+    icon: 'briefcase',
+    label: 'Workspaces'
+  }
+]
+```
+
+**Usage:**
+
+-   **Components:** Used in navigation components to render the navigation menu.
+-   **Modules:** Utilized in routing modules to manage navigation paths.
+
+By defining these constants, the Weave.Services platform maintains a high level of consistency and reliability across its various components and modules.

@@ -1,27 +1,178 @@
-import Bleed from 'nextra-theme-docs/bleed'
+import Bleed from 'nextra-theme-docs/bleed';
 
-# Introduction to simplifi
+# 🌟 Introduction to Weave.Services Platform UI
 
-**simplifi** is a cutting-edge, is a revolutionary, low-code/no-code workflow automation platform that is pushing the boundaries of what's possible with on-chain and off-chain integration. Our powerful, open-source platform is designed to empower developers and non-developers alike with its user-friendly, drag-and-drop interface.
+Welcome to **Weave.Services**, a cutting-edge low-code cloud platform designed for the seamless creation and deployment of serverless applications. Our platform empowers developers to efficiently build and manage backend functionalities within a serverless environment. The user interface of Weave.Services is crafted to be intuitive and user-friendly, facilitating the swift development, deployment, and management of backend services.
 
-## Just Drag and Drop!
-There are many awesome automation tools out there, however there isn't one that has the built-in logic of interacting/consuming information from blockchains. Hence, simplifi is created to allow people building workflows involving on-chain and off-chain applications, with simple drag and drop interface.
+## 🗂️ File Structure
 
-## Increase DevOps and Platform adoption practices in an easy way for Web 3.0
-Simplifi supports traditional YAML and JSON workflow markup schemes to provide flexibility and compatibility for users who are more familiar with or prefer traditional CI/Job tools such as GitHub Actions, Ansible, and CloudFormations. These markup schemes allow users to create and manage their workflows using the same syntax and conventions that they are already familiar with, which can make it easier for them to integrate Simplifi into their existing workflow processes.
+### Root Directory
 
-For example, if a user is accustomed to using GitHub Actions to manage their workflows, they can continue to use the same YAML syntax and conventions to create and manage their workflows in Simplifi. Similarly, if a user is more comfortable using Ansible or CloudFormations, they can use the JSON markup scheme to create and manage their workflows in Simplifi.
+- **`public/`**: 📂 Houses public assets and Shadcn packages.
+- **`src/`**: 📁 Main source directory containing essential components, hooks, libraries, services, and configuration files.
+- **`.env_example`**: 📝 Sample file for environment variables during development.
+- **`.eslintrc.json`**: 🔧 Configuration for ESLint.
+- **`.gitignore`**: 🚫 Specifies files and directories to be ignored by Git.
+- **`.prettierignore`**: 🚫 Specifies files and directories to be ignored by Prettier.
+- **`.prettierrc`**: 🎨 Configuration for Prettier.
+- **`DEV_GUIDELINES.md`**: 📑 Development guidelines for the project.
+- **`README.md`**: 📖 Project documentation and overview.
+- **`components.json`**: 🧩 Configuration for Shadcn module.
+- **`next.config.mjs`**: ⚙️ Next.js configuration file.
+- **`package.json`**: 📦 Lists project dependencies and scripts.
+- **`postcss.config.mjs`**: 🛠️ Configuration for PostCSS.
+- **`tailwind.config.js`**: 🎨 Tailwind CSS configuration file.
+- **`tailwind.config.ts`**: 🎨 Additional configuration for Tailwind CSS.
+- **`tsconfig.json`**: 📝 TypeScript configuration file.
+- **`yarn.lock`**: 🔒 Yarn lock file for managing dependencies.
 
-The support for traditional markup schemes also allows users to leverage their existing skills and knowledge, which can make it easier for them to adopt Simplifi and start automating their workflows. Additionally, it allows users to interconnect Simplifi to their current workflow tools, by exposing Simplifi workflow as a action or job in their CI/CD pipeline.
+### Source Directory (src/)
 
-## Use cases
-Simplifi is a cutting-edge, low-code/no-code workflow automation platform that allows users to seamlessly integrate on-chain and off-chain applications. As a Web3-first platform, Simplifi is designed for developers, but also caters to non-developers looking to automate tasks and streamline their workflow. Here are some use cases for Simplifi:
+- **`app/`**: 🛠️ Main application logic.
+- **`components/`**: 🧩 Reusable UI components.
+- **`config/`**: ⚙️ Configuration files and environment-specific settings.
+- **`constants/`**: 📌 Constant values used across the application.
+- **`db/`**: 🗄️ Database logic and configurations.
+- **`hooks/`**: 🪝 Custom hooks for various functionalities.
+- **`lib/`**: 📚 Common libraries and utility functions.
+- **`modules/`**: 🧩 Modularized features and functionalities.
+- **`providers/`**: 🌐 Context providers for state management.
+- **`services/`**: 🔧 Core services and business logic.
+- **`store/`**: 🛒 State management store.
+- **`styles/`**: 🎨 Global and component-specific styles.
+- **`types/`**: 📝 TypeScript type definitions.
+- **`utils/`**: 🛠️ Utility functions and helpers.
+- **`middleware.ts`**: 🛡️ Middleware logic for handling requests.
+- **`site.webmanifest`**: 🌐 Web application manifest file.
 
-- Monitor and track crypto prices across multiple exchanges, and automatically execute trades when certain conditions are met.
-- Automatically mint NFTs and post them on marketplaces such as OpenSea, Rarible, and SuperRare.
-- Automate compliance checks and KYT (know your transaction) for transaction monitoring and Anti-Money Laundering (AML) compliance.
-- Monitor real-time sensor data and trigger workflows based on predefined conditions
-- Create a decentralized autonomous organization (DAO) with Simplifi and manage it's functions, such as Proposal, Voting, and Token Distribution.
-- Integrate Simplifi with a project management tool such as Asana or Trello, triggering tasks, creating cards, and updating statuses in response to on-chain events.
-- Create a decentralized, self-sustaining, and autonomous community-driven content distribution platform.
-- Monitor and collect data from social media platforms, triggering workflows based on keywords, and sentiment analysis.
+### Pages Directory (src/app/pages/)
+
+- **`api/`**: 🔗 API routes for backend services.
+- **`icon.ico`**: 📍 Favicon for the application.
+- **`layout.tsx`**: 📐 Layout component for consistent page structure.
+- **`not-found.tsx`**: ❌ 404 Not Found page component.
+
+## 🚀 Key Features
+
+- **Low-Code Development**: 🖥️ Empowering interface for building and deploying serverless applications with minimal code.
+- **Serverless Backend**: ☁️ Efficiently manage and deploy backend services without the need for server infrastructure.
+- **Modular Architecture**: 🧩 Organized codebase with modular components and services for scalability and maintainability.
+- **State Management**: 🧠 Robust state management using custom hooks and context providers.
+- **Configuration Management**: ⚙️ Simplified configuration and environment management with dedicated files.
+- **API Integration**: 🔗 Seamless integration of APIs for various backend services.
+
+## 📚 Development Guidelines
+
+- **Coding Standards**: 📝 Follow the guidelines outlined in `DEV_GUIDELINES.md` for consistent and maintainable code.
+- **Environment Variables**: 🌐 Configure environment-specific variables using the `.env_example` file.
+- **Linting and Formatting**: 🎨 Maintain code quality and formatting standards with ESLint and Prettier configurations.
+
+For more detailed information, refer to the `README.md` and `DEV_GUIDELINES.md` files in the root directory.
+
+# 🎨 Weave UI
+
+This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+
+## 🚀 Getting Started
+
+First, run the development server:
+
+```bash
+npm run dev
+# or
+yarn dev
+# or
+pnpm dev
+# or
+bun dev
+
+Open <http://localhost:3000> with your browser to see the result.
+
+You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+
+This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+```
+📖 Learn More
+-------------
+
+To learn more about Next.js, take a look at the following resources:
+
+-   [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
+-   [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+
+You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+
+🚀 Deploy on Vercel
+-------------------
+
+The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+
+Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+
+📚 App Router Structure
+=======================
+
+For more information on the app router structure, visit the [Next.js Documentation](https://nextjs.org/docs/app).
+
+Routes
+------
+
+To learn about defining routes, visit the [Defining Routes](https://nextjs.org/docs/app/building-your-application/routing/defining-routes) section. For information on route handlers, see [Route Handlers](https://nextjs.org/docs/app/building-your-application/routing/route-handlers).
+
+Authentication
+--------------
+
+We use NextAuth.js for authentication. Learn more about it [here](https://next-auth.js.org/configuration/nextjs#in-app-router). Implement Google Auth and other operations such as CRUD for workflows, API keys, wallets, and smart contracts.
+
+Components
+----------
+
+Refer to the [Next.js Components Documentation](https://nextjs.org/docs/app/api-reference/components) for a comprehensive guide on components.
+
+### Navigation
+
+-   **NavBar**: Threads, Integrations, API Keys, Smart Contracts, Wallets, Teams, User -> Settings
+-   **Thread Card**: Card view for threads
+-   **Thread Table**: Table view for threads
+-   **API Key Card**: Card view for API keys
+-   **API Key Table**: Table view for API keys
+
+Pages
+-----
+
+Refer to the [Next.js Pages Documentation](https://nextjs.org/docs/app/building-your-application/routing/pages) for more details.
+
+### Dashboard
+
+-   **Auth/Signup & Login with Google**
+-   **Dashboard/Threads**
+-   **Dashboard/API Keys**
+-   **Dashboard/Wallets**
+-   **Dashboard/Smart Contracts**
+-   **Dashboard/User Settings**
+-   **Dashboard/Teams**
+
+Canvas
+------
+
+Refer to the [Canvas Documentation](https://docs.google.com/document/d/1LiMzVoS1tBxk8gkc6LdhkgVvpbm7hH2rMiu1Kujz78w/edit) for more details. Use `useSaveWorkflow` for saving workflows via the `API/workflows POST` endpoint.
+
+User Flow
+---------
+
+### Dashboard Flow
+
+User goes to the dashboard and performs conditional checks for `NEW_WORKFLOW_SAVED`. If `NEW_WORKFLOW_SAVED`, unset it and load the current workflows.
+
+### Workspaces Flow
+
+User navigates to workspaces, uses `useWorkspaces` to fetch available workspaces, and creates new workspaces via `POST api/workspaces`.
+
+### Canvas Flow
+
+User creates and saves workflows in the canvas using `useSaveWorkflows` which sets `NEW_WORKFLOW_SAVED`.
+
+Edit Nodes Flow
+---------------
+
+Schema for nodes includes actions, credentials, input parameters, networks, and test nodes. Editing nodes involves conditional rendering based on node type.

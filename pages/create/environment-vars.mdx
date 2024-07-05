@@ -1,0 +1,233 @@
+import Bleed from 'nextra-theme-docs/bleed'
+
+# Weave.Services Platform - Configuration
+
+This document provides an in-depth overview of the configuration settings used in the Weave.Services platform. The configuration files manage environment-specific settings, API endpoints, and other critical constants to ensure smooth operation across different environments (local, development, production).
+
+## Configuration Directory Structure
+
+The `ui/src/config` directory contains configuration files that are essential for setting up and managing the environment and API settings for the platform.
+
+### Directory Structure
+
+**Path:** `ui/src/config`
+
+**Files and Subdirectories:**
+- `app.ts`
+  - Contains the main application configuration, managing environment-specific settings.
+- `auth.ts`
+  - Contains configuration settings related to authentication.
+- `endpoints.ts`
+  - Defines various API endpoints used throughout the application.
+- `urls.ts`
+  - Manages URL constants for navigation and API requests.
+
+### Key Configuration Variables
+
+#### `API_BASE_URL`
+The base URL for the API that the platform interacts with. This URL changes based on the environment (local, development, production) to ensure the application communicates with the correct backend services.
+
+**Usage:**
+- **Path:** `ui/src/config/app.ts`
+- **Description:** Used throughout the application to make API requests to the correct server based on the environment.
+
+#### `GOOGLE_AUTH_API_CLIENT_ID`
+The Client ID for Google OAuth authentication. This is used to integrate Google login functionality within the platform.
+
+**Usage:**
+- **Path:** `ui/src/config/app.ts`
+- **Description:** Used in the authentication process to identify the application to Google's OAuth servers.
+
+#### `GOOGLE_AUTH_API_CLIENT_SECRET`
+The Client Secret for Google OAuth authentication. This secret, together with the Client ID, is used to authenticate the application to Google's OAuth servers.
+
+**Usage:**
+- **Path:** `ui/src/config/app.ts`
+- **Description:** Used securely in the backend to complete the OAuth flow and retrieve user information from Google.
+
+#### `NEXTAUTH_URL`
+The base URL for the NextAuth.js authentication library. This is used to manage user sessions and handle authentication callbacks.
+
+**Usage:**
+- **Path:** `ui/src/config/app.ts`
+- **Description:** Configures the URLs for authentication-related operations, such as login and callback handling.
+
+#### `NEXTAUTH_SECRET`
+A secret key used by NextAuth.js to encrypt and decrypt JWT tokens and other sensitive data.
+
+**Usage:**
+- **Path:** `ui/src/config/app.ts`
+- **Description:** Ensures the security of user session tokens and other sensitive information managed by NextAuth.js.
+
+#### `MONGO_URL`
+The connection string for the MongoDB database. This URL includes the database server address and any necessary authentication details.
+
+**Usage:**
+- **Path:** `ui/src/config/app.ts`
+- **Description:** Configures the database connection for storing and retrieving data within the application.
+
+#### `SERVERLESS_FUNCTIONS_API_BASE_URL`
+The base URL for the serverless functions API. This is used to interact with various serverless functions deployed within the platform.
+
+**Usage:**
+- **Path:** `ui/src/config/app.ts`, `ui/src/config/endpoints.ts`
+- **Description:** Used for making requests to serverless functions, which handle various backend operations in a scalable manner.
+
+#### `STEPS_API_BASE_URL`
+The base URL for the steps API, which is used to manage and execute steps within the application's workflows.
+
+**Usage:**
+- **Path:** `ui/src/config/app.ts`, `ui/src/config/endpoints.ts`
+- **Description:** Configures the endpoint for workflow step management, ensuring steps are executed correctly based on the environment.
+
+### Example Configuration Object
+
+The configuration object is structured to provide different values for these variables based on the environment.
+
+**Example Snippet:**
+```ts
+const config: AppConfig = {
+  local: {
+    API_BASE_URL: LOCAL_BASE_URL,
+    GOOGLE_AUTH_API_CLIENT_ID: process.env.GOOGLE_CLIENT_ID || '',
+    GOOGLE_AUTH_API_CLIENT_SECRET: process.env.GOOGLE_CLIENT_SECRET || '',
+    NEXTAUTH_URL: process.env.NEXTAUTH_URL || 'http://localhost:3000',
+    NEXTAUTH_SECRET: process.env.NEXTAUTH_SECRET || '',
+    MONGO_URL: process.env.MONGO_URL || '',
+    SERVERLESS_FUNCTIONS_API_BASE_URL: LOCAL_SERVERLESS_FUNCTIONS_API_BASE_URL || '',
+    STEPS_API_BASE_URL: LOCAL_STEPS_API_BASE_URL,
+  },
+  development: {
+    API_BASE_URL: DEV_BASE_URL,
+    GOOGLE_AUTH_API_CLIENT_ID: process.env.GOOGLE_CLIENT_ID || '',
+    GOOGLE_AUTH_API_CLIENT_SECRET: process.env.GOOGLE_CLIENT_SECRET || '',
+    NEXTAUTH_URL: process.env.NEXTAUTH_URL || 'http://localhost:3000',
+    NEXTAUTH_SECRET: process.env.NEXTAUTH_SECRET || '',
+    MONGO_URL: process.env.MONGO_URL || '',
+    SERVERLESS_FUNCTIONS_API_BASE_URL: DEV_SERVERLESS_FUNCTIONS_API_BASE_URL || '',
+    STEPS_API_BASE_URL: DEV_STEPS_API_BASE_URL,
+  },
+  production: {
+    API_BASE_URL: PROD_BASE_URL,
+    GOOGLE_AUTH_API_CLIENT_ID: process.env.GOOGLE_CLIENT_ID || '',
+    GOOGLE_AUTH_API_CLIENT_SECRET: process.env.GOOGLE_CLIENT_SECRET || '',
+    NEXTAUTH_URL: process.env.NEXTAUTH_URL || 'http://localhost:3000',
+    NEXTAUTH_SECRET: process.env.NEXTAUTH_SECRET || '',
+    MONGO_URL: process.env.MONGO_URL || '',
+    SERVERLESS_FUNCTIONS_API_BASE_URL: DEV_SERVERLESS_FUNCTIONS_API_BASE_URL || '',
+    STEPS_API_BASE_URL: DEV_STEPS_API_BASE_URL,
+  },
+}
+
+export const currentConfig = config[APP_ENV];
+```
+
+```typescript
+export const {
+  API_BASE_URL,
+  GOOGLE_AUTH_API_CLIENT_ID,
+  GOOGLE_AUTH_API_CLIENT_SECRET,
+  MONGO_URL,
+  SERVERLESS_FUNCTIONS_API_BASE_URL,
+  STEPS_API_BASE_URL,
+} = currentConfig
+
+export const logAppConfig = () => {
+  console.log('App Environment: ', APP_ENV)
+}
+
+logAppConfig()
+```
+**Usage:**
+
+-   **Path:** `ui/src/config/endpoints.ts`
+-   **Description:** Used to define and centralize API endpoints for various operations within the platform, ensuring consistent and easy-to-manage endpoints.
+
+By defining these configuration settings, the Weave.Services platform maintains a high level of flexibility and reliability, ensuring that the correct settings and endpoints are used based on the environment.
+
+```typescript
+import {
+  SERVERLESS_FUNCTIONS_API_BASE_URL,
+  STEPS_API_BASE_URL,
+} from '@/config/app'
+
+export const SERVERLESS_FUNCTIONS_API_URL = '{SERVERLESS_FUNCTIONS_API_BASE_URL}/api'
+
+export const GET_WORKFLOWS = '{SERVERLESS_FUNCTIONS_API_URL}/workflows'
+export const GET_WORKFLOW = (id: string) => '{GET_WORKFLOWS}/${id}'
+export const GET_WORKFLOW_EXECUTIONS = (id: string) => '{GET_WORKFLOWS}/${id}/executions'
+export const DEPLOY_WORKFLOW = (id: string) => '{GET_WORKFLOWS}/deploy/${id}'
+export const GET_WORKSPACES = '{SERVERLESS_FUNCTIONS_API_BASE_URL}/api/workspaces'
+export const STEPS_V3 = '{STEPS_API_BASE_URL}/api/step-v3/0'
+```
+
+
+### `NEXT_APP_ENV`
+- **Description:** Specifies the environment for the Next.js application.
+- **Example Value:** `development`
+
+### `APP_ENV`
+- **Description:** Defines the overall environment for the application, determining which configuration settings to use.
+- **Example Value:** `local`
+
+### `NEXT_PUBLIC_APP_ENV`
+- **Description:** A publicly accessible variable that sets the environment for the Next.js application. It can be accessed in the client-side code.
+- **Example Value:** `local`
+
+### `NEXT_APP_ENV`
+- **Description:** Specifies the environment for the Next.js application (duplicate of `NEXT_APP_ENV`).
+- **Example Value:** `local`
+
+### `NEXT_TEST_ENV_VAR`
+- **Description:** A test environment variable used for demonstration or testing purposes.
+- **Example Value:** `test_env_var`
+
+### `GOOGLE_CLIENT_ID`
+- **Description:** The Client ID for Google OAuth authentication. Used to integrate Google login functionality within the platform.
+- **Example Value:** `your-google-client-id`
+
+### `GOOGLE_CLIENT_SECRET`
+- **Description:** The Client Secret for Google OAuth authentication. This, along with the Client ID, is used to authenticate the application to Google's OAuth servers.
+- **Example Value:** `your-google-client-secret`
+
+### `NEXTAUTH_URL`
+- **Description:** The base URL for the NextAuth.js authentication library. Used to manage user sessions and handle authentication callbacks.
+- **Example Value:** `http://localhost:3000`
+
+### `NEXTAUTH_SECRET`
+- **Description:** A secret key used by NextAuth.js to encrypt and decrypt JWT tokens and other sensitive data.
+- **Example Value:** `sPCvCrK59zq6c2IzGIeE0ucOqZULe9MGq6ZBtx7qKYY=`
+
+### `PASSPHRASE`
+- **Description:** A passphrase used for encryption or other security-related purposes.
+- **Example Value:** `MYPASSPHRASE`
+
+### `MONGO_URL`
+- **Description:** The connection string for the MongoDB database. This URL includes the database server address and any necessary authentication details.
+- **Example Value:** `your-mongo-url`
+
+## Example Environment Variables File (.env)
+
+Here's an example of how these environment variables might be defined in a `.env` file:
+
+```plaintext
+# Next.js Application Environment
+NEXT_APP_ENV="development"
+APP_ENV="local"
+NEXT_PUBLIC_APP_ENV="local"
+NEXT_APP_ENV="local"
+NEXT_TEST_ENV_VAR="test_env_var"
+
+# Google OAuth Credentials
+GOOGLE_CLIENT_ID=your-google-client-id
+GOOGLE_CLIENT_SECRET=your-google-client-secret
+
+# NextAuth.js Configuration
+NEXTAUTH_URL=http://localhost:3000
+NEXTAUTH_SECRET=sPCvCrK59zq6c2IzGIeE0ucOqZULe9MGq6ZBtx7qKYY=
+
+# Security Passphrase
+PASSPHRASE=MYPASSPHRASE
+
+# MongoDB Connection String
+MONGO_URL=your-mongo-url
