@@ -98,3 +98,57 @@ export default function DashboardPage() {
     </div>
   )
 }
+```
+
+# Store Directory Structure
+
+### 📂 Store Directory
+
+The store directory is located at `ui/src/store/`. It contains state management logic for various parts of the application, utilizing Jotai for atomic state management.
+
+### 🗂️ Canvas Store
+
+The canvas store is responsible for managing the state of the canvas, including selected nodes and workflow details.
+
+#### Define Atoms
+
+Atoms represent individual pieces of state.
+
+```jsx
+const selectedNodeAtom = atom<Node<any, string | undefined> | undefined>(undefined)
+const popupAddOpenAtom = atom<boolean>(false)
+const popupEditOpenAtom = atom<boolean>(false)
+const modalDeleteStateAtom = atom<boolean>(false)
+const workflowAtom = atom<Workflow | null>(null)
+const nodeListAtom = atom<NodeType[]>([])
+
+```
+#### Actions and Reducer
+
+Define actions and a reducer to manage the state
+
+```js
+export enum ActionTypes {
+  SET_WORKFLOWS = 'SET_WORKFLOWS',
+  SET_WORKSPACES = 'SET_WORKSPACES',
+  SET_NEW_WORKSPACE = 'SET_NEW_WORKSPACE'
+}
+
+interface Action {
+  type: ActionTypes;
+  payload: any;
+}
+
+export function reducer(state, action) {
+  switch (action.type) {
+    case ActionTypes.SET_WORKFLOWS:
+      return { ...state, workflows: action.payload }
+    case ActionTypes.SET_WORKSPACES:
+      return { ...state, workspaces: action.payload }
+    case ActionTypes.SET_NEW_WORKSPACE:
+      return { ...state, workspaces: [...state.workspaces, action.payload] }
+    default:
+      return state
+  }
+}
+```
